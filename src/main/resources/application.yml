@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/ticket_db
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+  application:
+    name: test-service
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+server:
+  port: 8001
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: env, configprops, flyway, health, heapdump, info, loggers, mappings, prometheus
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+info:
+  system: Test-service
