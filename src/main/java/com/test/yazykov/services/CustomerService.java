@@ -9,9 +9,5 @@ public interface CustomerService {
 
     AccountDetails createNewAccount(AddAccountToCustomer addDto);
 
-    AccountDetails deposit(Deposit deposit);
-
-    AccountDetails transfer(PayrollDetail payroll);
-
     CustomerDetails info(String idNumber);
 }

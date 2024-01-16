@@ -1,5 +1,6 @@
 package com.test.yazykov.domain;
 
+import com.test.yazykov.dto.PayrollDetail;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,4 +29,14 @@ public class Transaction {
     private String currency;
     @Enumerated(EnumType.STRING)
     private TransactionState state;
+
+    public static Transaction createOk(Account from, Account to, PayrollDetail payroll) {
+        return new Transaction(null, from, to, payroll.amount(), payroll.currency(),
+                TransactionState.ACCEPTED);
+    }
+
+    public static Transaction createFail(Account from, Account to, PayrollDetail payroll) {
+        return new Transaction(null, from, to, payroll.amount(), payroll.currency(),
+                TransactionState.DECLINED);
+    }
 }

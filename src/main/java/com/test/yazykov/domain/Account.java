@@ -28,4 +28,9 @@ public class Account {
     private Set<Transaction> transactionsFrom;
     @OneToMany(mappedBy = "to")
     private Set<Transaction> transactionsTo;
+
+    public static Account createNewAcc(Customer customer) {
+        return new Account(null, BigDecimal.ZERO, "BYN",
+                customer, null, null);
+    }
 }

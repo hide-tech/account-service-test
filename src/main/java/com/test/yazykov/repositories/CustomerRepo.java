@@ -11,5 +11,5 @@ public interface CustomerRepo extends JpaRepository<Customer, Long> {
     @EntityGraph(attributePaths = {"accounts",
             "accounts.transactionsFrom",
             "accounts.transactionsTo"})
-    Optional<Customer> findByIdNumber(Long idNumber);
+    Optional<Customer> findByIdNumber(String idNumber);
 }
