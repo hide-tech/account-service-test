@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,7 +30,7 @@ public class Customer {
 
     public static Customer of(SignIn signIn) {
         return new Customer(null, signIn.name(), signIn.idNumber(),
-                signIn.idType(), null);
+                signIn.idType(), new HashSet<>());
     }
 
     public Customer update(UpdateCustomer update) {

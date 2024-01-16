@@ -25,20 +25,16 @@ public class AccountServiceHttp implements AccountService {
         var to = accountRepo.findById(payroll.accountIdTo()).orElseThrow(
                 () -> new RuntimeException("Destination account with this id wasn't found"));
         if (!payroll.currency().equals(from.getCurrency())) {
-            var transactionFail = Transaction.createFail(from, to, payroll);
-            transactionRepo.save(transactionFail);
             throw new RuntimeException("We support only national currency transfer yet");
         }
         if (from.getValue().compareTo(payroll.amount()) < 0) {
-            var transactionFail = Transaction.createFail(from, to, payroll);
-            transactionRepo.save(transactionFail);
             throw new RuntimeException("You have not enough balance on your account");
         }
         from.setValue(from.getValue().subtract(payroll.amount()));
         var newFrom = accountRepo.save(from);
         to.setValue(to.getValue().add(payroll.amount()));
-        var transaction = Transaction.createOk(from, to, payroll);
-        transactionRepo.save(transaction);
+        var tr = Transaction.createOk(from, to, payroll);
+        transactionRepo.save(tr);
         return AccountDetails.of(newFrom);
     }
 

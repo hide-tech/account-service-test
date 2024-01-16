@@ -5,7 +5,6 @@ import com.test.yazykov.dto.CustomerDetails;
 import com.test.yazykov.dto.SignIn;
 import com.test.yazykov.dto.UpdateCustomer;
 import com.test.yazykov.services.CustomerService;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +33,7 @@ public class CustomerController {
 
     @GetMapping("/app/v1/customers")
     public ResponseEntity<CustomerDetails> getCustomerByIdNumber(
-            @PathParam("idnum") String idNumber) {
+            @RequestParam("idnum") String idNumber) {
         return ResponseEntity.ok(customerService.info(idNumber));
     }
 }

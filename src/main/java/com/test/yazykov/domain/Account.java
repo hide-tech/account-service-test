@@ -1,12 +1,10 @@
 package com.test.yazykov.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "accounts")
 public class Account {
     @Id
@@ -31,6 +30,6 @@ public class Account {
 
     public static Account createNewAcc(Customer customer) {
         return new Account(null, BigDecimal.ZERO, "BYN",
-                customer, null, null);
+                customer, new HashSet<>(), new HashSet<>());
     }
 }

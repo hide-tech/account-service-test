@@ -2,7 +2,7 @@ spring:
   datasource:
     username: user
     password: password
-    url: jdbc:postgresql://localhost:5432/ticket_db
+    url: jdbc:postgresql://localhost:5432/test_db
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
@@ -10,6 +10,12 @@ spring:
     name: test-service
   lifecycle:
     timeout-per-shutdown-phase: 1m
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
 
 logging:
   pattern:

@@ -21,7 +21,8 @@ public record CustomerDetails(
         public static CustomerDetails of(Customer customer) {
                 return new CustomerDetails(customer.getId(), customer.getName(),
                         customer.getIdNumber(), customer.getIdType(),
-                        customer.getAccounts().stream().map(AccountDetails::of)
+                        customer.getAccounts().stream()
+                                .map(AccountDetails::of)
                                 .collect(Collectors.toSet()));
         }
 }

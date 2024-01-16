@@ -55,6 +55,12 @@ databaseChangeLog:
                                type:  varchar(100)
                                constraints:
                                    nullable:  false
+                        -  column:
+                               name:  customer_id
+                               type:  bigint
+                               constraints:
+                                   nullable:  false
+
 
   -  changeSet:
          id:  table-transactions-creation
@@ -70,6 +76,16 @@ databaseChangeLog:
                                constraints:
                                    primaryKey:  true
                                    nullable:  false
+                        -  column:
+                               name: from_acc_id
+                               type: bigint
+                               constraints:
+                                    nullable: false
+                        -  column:
+                               name: to_acc_id
+                               type: bigint
+                               constraints:
+                                    nullable: false
                         -  column:
                                name:  value
                                type:  numeric(10,2)
@@ -94,8 +110,6 @@ databaseChangeLog:
                     baseColumnNames:  customer_id
                     baseTableName:  accounts
                     constraintName:  fk_account_customer
-                    onDelete:  CASCADE
-                    onUpdate:  RESTRICT
                     referencedColumnNames:  id
                     referencedTableName:  customers
                     validate:  true
@@ -105,11 +119,9 @@ databaseChangeLog:
          author:  hide-tech
          changes:
              -  addForeignKeyConstraint:
-                    baseColumnNames:  from
-                    baseTableName:  transaction
+                    baseColumnNames:  from_acc_id
+                    baseTableName:  transactions
                     constraintName:  fk_account_transaction_from
-                    onDelete:  CASCADE
-                    onUpdate:  RESTRICT
                     referencedColumnNames:  id
                     referencedTableName:  accounts
                     validate:  true
@@ -119,11 +131,9 @@ databaseChangeLog:
          author:  hide-tech
          changes:
              -  addForeignKeyConstraint:
-                    baseColumnNames:  to
-                    baseTableName:  transaction
+                    baseColumnNames:  to_acc_id
+                    baseTableName:  transactions
                     constraintName:  fk_account_transaction_to
-                    onDelete:  CASCADE
-                    onUpdate:  RESTRICT
                     referencedColumnNames:  id
                     referencedTableName:  accounts
                     validate:  true
@@ -146,7 +156,7 @@ databaseChangeLog:
              - createIndex:
                    columns:
                        - column:
-                             name:  from
+                             name:  from_acc_id
                    indexName:  idx_accounts_join_tr_from
                    tableName:  transactions
 
@@ -157,6 +167,6 @@ databaseChangeLog:
              - createIndex:
                    columns:
                        - column:
-                             name:  to
+                             name:  to_acc_id
                    indexName:  idx_accounts_join_tr_to
                    tableName:  transactions

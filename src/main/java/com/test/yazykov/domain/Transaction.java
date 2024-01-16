@@ -2,10 +2,7 @@ package com.test.yazykov.domain;
 
 import com.test.yazykov.dto.PayrollDetail;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -14,16 +11,17 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "transactions")
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "from", nullable = false)
+    @JoinColumn(name = "from_acc_id", nullable = false)
     private Account from;
     @ManyToOne
-    @JoinColumn(name = "to", nullable = false)
+    @JoinColumn(name = "to_acc_id", nullable = false)
     private Account to;
     private BigDecimal value;
     private String currency;
