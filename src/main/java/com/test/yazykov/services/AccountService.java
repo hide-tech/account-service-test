@@ -6,7 +6,7 @@ import com.test.yazykov.dto.PayrollDetail;
 
 public interface AccountService {
 
-    AccountDetails transfer(PayrollDetail payroll);
+    AccountDetails transfer(PayrollDetail payroll, Long accountId);
 
-    AccountDetails deposit(Deposit deposit);
+    AccountDetails deposit(Deposit deposit, Long accountId);
 }

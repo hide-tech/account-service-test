@@ -7,7 +7,7 @@ spring:
       connection-timeout: 2000
       maximum-pool-size: 5
   application:
-    name: test-service
+    name: account-service
   lifecycle:
     timeout-per-shutdown-phase: 1m
   jpa:
@@ -48,4 +48,4 @@ management:
       application: ${spring.application.name}
 
 info:
-  system: Test-service
+  system: Account-service

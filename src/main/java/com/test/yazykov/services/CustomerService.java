@@ -5,7 +5,7 @@ import com.test.yazykov.dto.*;
 public interface CustomerService {
     CustomerDetails register(SignIn signIn);
 
-    CustomerDetails update(UpdateCustomer newCustomer);
+    CustomerDetails update(UpdateCustomer newCustomer, Long customerId);
 
     AccountDetails createNewAccount(Long customerId);
 

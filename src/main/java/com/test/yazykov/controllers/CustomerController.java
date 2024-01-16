@@ -22,7 +22,7 @@ public class CustomerController {
     @PutMapping("/app/v1/customers/{customerId}")
     public ResponseEntity<CustomerDetails> update(@PathVariable("customerId") Long customerId,
                                                   @RequestBody UpdateCustomer update) {
-        return ResponseEntity.ok(customerService.update(update));
+        return ResponseEntity.ok(customerService.update(update, customerId));
     }
 
     @PostMapping("/app/v1/customers/{customerId}/accounts")

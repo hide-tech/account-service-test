@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-#  test-service:
+#  account-service:
 #    depends_on:
 #    - test-postgres
 #    image: "ghcr.io/hide-tech/test:latest"

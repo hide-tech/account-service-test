@@ -19,15 +19,19 @@ public class AccountServiceHttp implements AccountService {
 
     @Transactional
     @Override
-    public AccountDetails transfer(PayrollDetail payroll) {
-        var from = accountRepo.findById(payroll.accountIdFrom()).orElseThrow(
+    public AccountDetails transfer(PayrollDetail payroll, Long accountId) {
+        var from = accountRepo.findById(accountId).orElseThrow(
                 () -> new RuntimeException("Source account with this id wasn't found"));
         var to = accountRepo.findById(payroll.accountIdTo()).orElseThrow(
                 () -> new RuntimeException("Destination account with this id wasn't found"));
         if (!payroll.currency().equals(from.getCurrency())) {
+            var tr = Transaction.createFail(from, to, payroll);
+            transactionRepo.save(tr);
             throw new RuntimeException("We support only national currency transfer yet");
         }
         if (from.getValue().compareTo(payroll.amount()) < 0) {
+            var tr = Transaction.createFail(from, to, payroll);
+            transactionRepo.save(tr);
             throw new RuntimeException("You have not enough balance on your account");
         }
         from.setValue(from.getValue().subtract(payroll.amount()));
@@ -40,8 +44,8 @@ public class AccountServiceHttp implements AccountService {
 
     @Transactional
     @Override
-    public AccountDetails deposit(Deposit deposit) {
-        var account = accountRepo.findById(deposit.accountId()).orElseThrow(
+    public AccountDetails deposit(Deposit deposit, Long accountId) {
+        var account = accountRepo.findById(accountId).orElseThrow(
                 () -> new RuntimeException("Account with this id wasn't found"));
         if (!account.getCurrency().equals(deposit.currency())) {
             throw new RuntimeException("We support only national currency transfer yet");

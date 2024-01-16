@@ -25,8 +25,8 @@ public class CustomerServiceRest implements CustomerService {
 
     @Transactional
     @Override
-    public CustomerDetails update(UpdateCustomer newCustomer) {
-        var old = customerRepo.findById(newCustomer.id()).orElseThrow(
+    public CustomerDetails update(UpdateCustomer newCustomer, Long customerId) {
+        var old = customerRepo.findById(customerId).orElseThrow(
                 () -> new RuntimeException("Customer with this id wasn't found"));
         var updated = old.update(newCustomer);
         var saved = customerRepo.save(updated);
