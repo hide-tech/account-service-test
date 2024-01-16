@@ -35,8 +35,8 @@ public class CustomerServiceRest implements CustomerService {
 
     @Transactional
     @Override
-    public AccountDetails createNewAccount(AddAccountToCustomer addDto) {
-        var customer = customerRepo.findById(addDto.customerId()).orElseThrow(
+    public AccountDetails createNewAccount(Long customerId) {
+        var customer = customerRepo.findById(customerId).orElseThrow(
                 () -> new RuntimeException("Customer with this id wasn't found"));
         var account = Account.createNewAcc(customer);
         var savedAcc = accountRepo.save(account);

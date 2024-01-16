@@ -7,7 +7,7 @@ public interface CustomerService {
 
     CustomerDetails update(UpdateCustomer newCustomer);
 
-    AccountDetails createNewAccount(AddAccountToCustomer addDto);
+    AccountDetails createNewAccount(Long customerId);
 
     CustomerDetails info(String idNumber);
 }
