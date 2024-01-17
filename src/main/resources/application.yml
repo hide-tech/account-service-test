@@ -12,10 +12,6 @@ spring:
     timeout-per-shutdown-phase: 1m
   jpa:
     open-in-view: false
-    show-sql: true
-    properties:
-      hibernate:
-        format-sql: true
   api-docs:
     path: /openapi.json
 
