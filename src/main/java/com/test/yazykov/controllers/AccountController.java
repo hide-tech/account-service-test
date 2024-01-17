@@ -17,15 +17,15 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/app/v1/customers/{customerId}/accounts/{accountId}")
-    public ResponseEntity<AccountDetails> transfer(@RequestBody PayrollDetail payrollDetail,
-                                                   @PathVariable("accountId") Long accountId,
-                                                   @PathVariable("customerId") Long customerId) {
-        return ResponseEntity.ok(accountService.transfer(payrollDetail, accountId));
+    public AccountDetails transfer(@RequestBody PayrollDetail payrollDetail,
+                                   @PathVariable("accountId") Long accountId,
+                                   @PathVariable("customerId") Long customerId) {
+        return accountService.transfer(payrollDetail, accountId);
     }
 
     @PostMapping("/app/v1/customers/{customerId}/accounts/{accountId}/deposit")
-    public ResponseEntity<AccountDetails> deposit(@RequestBody Deposit deposit,
-                                                  @PathVariable("accountId") Long accountId) {
-        return ResponseEntity.ok(accountService.deposit(deposit, accountId));
+    public AccountDetails deposit(@RequestBody Deposit deposit,
+                                  @PathVariable("accountId") Long accountId) {
+        return accountService.deposit(deposit, accountId);
     }
 }

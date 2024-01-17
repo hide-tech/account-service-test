@@ -15,25 +15,25 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/app/v1/customers")
-    public ResponseEntity<CustomerDetails> register(@RequestBody SignIn signIn) {
-        return ResponseEntity.ok(customerService.register(signIn));
+    public CustomerDetails register(@RequestBody SignIn signIn) {
+        return customerService.register(signIn);
     }
 
     @PutMapping("/app/v1/customers/{customerId}")
-    public ResponseEntity<CustomerDetails> update(@PathVariable("customerId") Long customerId,
+    public CustomerDetails update(@PathVariable("customerId") Long customerId,
                                                   @RequestBody UpdateCustomer update) {
-        return ResponseEntity.ok(customerService.update(update, customerId));
+        return customerService.update(update, customerId);
     }
 
     @PostMapping("/app/v1/customers/{customerId}/accounts")
-    public ResponseEntity<AccountDetails> createNewAcc(
+    public AccountDetails createNewAcc(
             @PathVariable("customerId") Long customerId) {
-        return ResponseEntity.ok(customerService.createNewAccount(customerId));
+        return customerService.createNewAccount(customerId);
     }
 
     @GetMapping("/app/v1/customers")
-    public ResponseEntity<CustomerDetails> getCustomerByIdNumber(
+    public CustomerDetails getCustomerByIdNumber(
             @RequestParam("idnum") String idNumber) {
-        return ResponseEntity.ok(customerService.info(idNumber));
+        return customerService.info(idNumber);
     }
 }

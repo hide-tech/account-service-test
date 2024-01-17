@@ -16,6 +16,13 @@ spring:
     properties:
       hibernate:
         format-sql: true
+  api-docs:
+    path: /openapi.json
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
 
 logging:
   pattern:

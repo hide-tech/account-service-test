@@ -3,6 +3,7 @@ package com.test.yazykov.dto;
 import com.test.yazykov.domain.Account;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.Set;
