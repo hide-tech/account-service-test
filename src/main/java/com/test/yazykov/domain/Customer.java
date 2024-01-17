@@ -3,10 +3,7 @@ package com.test.yazykov.domain;
 import com.test.yazykov.dto.SignIn;
 import com.test.yazykov.dto.UpdateCustomer;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 @Table(name = "customers")
 public class Customer {
     @Id
