@@ -28,7 +28,7 @@ jobs:
           ./gradlew build
   package:
     name: Package and Publish
-    needs: [ build, native ]
+    needs: [ build ]
     runs-on: ubuntu-22.04
     permissions:
       contents: read
